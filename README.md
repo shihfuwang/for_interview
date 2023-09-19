@@ -17,4 +17,18 @@ electron: 26.2.1
 electron-packager: 17.1.2
 
 ###########部署步驟
+(一)克隆倉庫到本地:
 git clone https://github.com/shihfuwang/for_interview.git
+
+(二)進入項目目錄:
+cd for_interview
+
+(三)安裝套件:
+npm install
+
+(四)資料庫設置:
+在資料庫管理系統中，建立一個新的資料庫，使用此專案中的for_interview_create.sql檔案來建立所需的資料表及預設環境參數。
+
+(五)
+
+
