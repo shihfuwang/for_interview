@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            width: 340px;
+            /* 調整寬度 */
+            background-color: #f9f9f9;
+        }
+
+        .login-button,
+        .register-button {
+            display: inline-block;
+            margin: 10px 5px;
+            /* 添加邊距 */
+        }
+
+        .label-text {
+            display: inline-block;
+            width: 100px;
+            /* 調整寬度 */
+            text-align: left;
+            margin-right: 10px;
+        }
+
+        .login-button,
+        .register-button {
+            display: inline-block;
+            margin: 10px 5px;
+        }
+
+        /* 這將使 div 內的內容左對齊 */
+        .login-container div {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <h1>
+            <%= title %>
+        </h1>
+        <form action="/registerPost" method="post">
+            <div>
+                <span class="label-text">帳號 :</span>
+                <input type="text" name="account" value="fuwang40">
+            </div>
+            <br>
+            <div>
+                <span class="label-text">密碼 :</span>
+                <input type="password" name="password" value="00000">
+            </div>
+            <br>
+            <div>
+                <span class="label-text">確認密碼 :</span>
+                <input type="password" name="secPassword" value="00000">
+            </div>
+            <br>
+            <div>
+                <span class="label-text">生日 :</span>
+                <input type="date" name="birthday">
+            </div>
+            <br>
+            <div>
+                <span class="label-text">性別 :</span>
+                <select name="gender">
+                    <option>男</option>
+                    <option>女</option>
+                </select>
+            </div>
+            <br><br>
+            <input class="register-button" type="submit" value="register">
+            <input class="back-button" type="button" value="back" onclick="window.history.back()">
+        </form>
+    </div>
+
+</body>
+
+</html>

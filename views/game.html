@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="//cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser.js"></script>
+    <script src="player.js"></script>
+    <script src="scene.js"></script>
+    <script src="enemy.js"></script>
+    <title>phaser3</title>
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <script>
+        let playerData = JSON.parse(localStorage.getItem('selectedPlayerData'));
+
+        // 定義 Phaser 場景
+        class Scene1 extends Phaser.Scene {
+            constructor() {
+                super({ key: 'scene1' });
+            }
+            create(data) {
+                // 使用從後端取得的資料 (data) 進行初始化，例如設置玩家的位置
+                this.player = this.add.sprite(data.position_x, data.position_y, 'playerSpriteKey');
+                // ...其他代碼
+            }
+        }
+
+        class Scene2 extends Phaser.Scene {
+            constructor() {
+                super({ key: 'scene2' });
+            }
+            create(data) {
+                // 使用從後端取得的資料 (data) 進行初始化，例如設置玩家的位置
+                this.player = this.add.sprite(data.position_x, data.position_y, 'playerSpriteKey');
+                // ...其他代碼
+            }
+        }
+
+        if (playerData) {
+    
+            const config = {
+            type: Phaser.AUTO,
+            width: 800,
+            height: 600,
+            parent: 'app',
+            disableContextMenu: true, //禁止右鍵
+            scale: {
+                autoCenter: Phaser.Scale.CENTER_BOTH //畫布置中
+            },
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    debug: false, //gravity具現化
+                    gravity: {  //重力
+                        y: 100,
+                    }
+                }
+            },
+            scene: [Scene2, Scene1,scene]
+        }
+
+            const game = new Phaser.Game(config);
+            game.scene.start(playerData.scene_key, playerData);
+
+        } else {
+            console.error('No player data found in localStorage.');
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e5a256f3fc.js" crossorigin="anonymous"></script>
+    <title></title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .player-container {
+            position: relative;
+            border: 1px solid #ccc;
+            padding: 20px;
+            text-align: center;
+            width: auto;
+            /* Adjust the width */
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .players-container {
+            display: flex;
+            flex-wrap: wrap;
+            /* Allow the boxes to wrap if there's not enough space */
+            gap: 20px;
+            /* Space between boxes */
+        }
+
+        .player-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            background-color: #fff;
+            min-width: 120px;
+            /* Adjust the minimum width */
+        }
+
+        .player-image {
+            width: 100px;
+            height: 100px;
+            background-color: #eee;
+            /* Placeholder background */
+            margin: 0 auto 10px auto;
+            /* Centering the image */
+        }
+
+        .player-details {
+            margin-top: 10px;
+        }
+
+        .logout {
+            position: absolute;
+            top: 10px;
+            /* Adjust as needed */
+            right: 10px;
+            /* Adjust as needed */
+            background-color: transparent;
+            border: none;
+            font-size: 24px;
+            /* Adjust as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="player-container">
+        <a href="/logout" class="logout"><i class="fa-solid fa-user-xmark"></i></a>
+        <h1>
+            <%= title %>
+        </h1>
+        <div class="players-container">
+            <% players.forEach(function(player) { %>
+                <div class="player-box" data-name="<%= player.player_name %>">
+                    <div class="player-image">
+                        <img src="/playerHead.png" alt="Player Image" width="100%">
+                    </div>
+                    <div class="player-details">
+                        <p>Name: <%= player.player_name %>
+                        </p>
+                        <p>Level: <%= player.level %>
+                        </p>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+        <form action="/createPlayerPost" method="post" style="margin-top: 20px;">
+            <label for="playerName">New Player Name:</label>
+            <input type="text" id="playerName" name="playerName" required>
+            <input type="submit" value="Create New Player">
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const playerBoxes = document.querySelectorAll('.player-box');
+            playerBoxes.forEach(box => {
+                box.addEventListener('click', function () {
+                    const playerName = this.getAttribute('data-name');
+                    sendPlayerNameToBackend(playerName);
+                });
+            });
+        });
+
+        function sendPlayerNameToBackend(name) {
+            fetch('/playerNamePost', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ playerName: name })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.data && data.data.length > 0) {
+                        localStorage.setItem('selectedPlayerData', JSON.stringify(data.data[0]));
+                        window.location.href = "/game";  // 轉跳到遊戲頁面
+                    }
+                })
+                .catch(error => {
+                    console.error('Error sending player name:', error);
+                });
+        }
+
+    </script>
+</body>
+
+</html>
