@@ -3,7 +3,9 @@ README:
 
 這是由Phaser3及js所開發的小遊戲。
 
+
 ###########環境依賴
+
 
 bcrypt: 5.1.1
 
@@ -66,7 +68,9 @@ npx electron-packager . [YourAppName] --platform=win32,linux --arch=x64 --overwr
 **[YourAppName] 是應用程式的名稱，可根據需求做替換。
 
 
+
 ###########目錄結構描述
+
 
 │  app.js                 > 主應用程式入口
 
@@ -174,6 +178,7 @@ npx electron-packager . [YourAppName] --platform=win32,linux --arch=x64 --overwr
 
 
 ###########使用說明
+
 
 左右鍵 - 角色移動
 
