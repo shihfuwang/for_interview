@@ -18,29 +18,6 @@
     <script>
         let playerData = JSON.parse(localStorage.getItem('selectedPlayerData'));
 
-        // 定義 Phaser 場景
-        class Scene1 extends Phaser.Scene {
-            constructor() {
-                super({ key: 'scene1' });
-            }
-            create(data) {
-                // 使用從後端取得的資料 (data) 進行初始化，例如設置玩家的位置
-                this.player = this.add.sprite(data.position_x, data.position_y, 'playerSpriteKey');
-                // ...其他代碼
-            }
-        }
-
-        class Scene2 extends Phaser.Scene {
-            constructor() {
-                super({ key: 'scene2' });
-            }
-            create(data) {
-                // 使用從後端取得的資料 (data) 進行初始化，例如設置玩家的位置
-                this.player = this.add.sprite(data.position_x, data.position_y, 'playerSpriteKey');
-                // ...其他代碼
-            }
-        }
-
         if (playerData) {
     
             const config = {
@@ -61,7 +38,7 @@
                     }
                 }
             },
-            scene: [Scene2, Scene1,scene]
+            scene: [scene]
         }
 
             const game = new Phaser.Game(config);
