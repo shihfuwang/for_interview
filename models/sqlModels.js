@@ -6,7 +6,7 @@ let con = null;
 async function connectToMySQL() {
     const con = await mysql.createConnection({
         user: "root",
-        password: "skw53903718",
+        password: "",
         host: "localhost",
         database: "for_interview"
     });
