@@ -1,7 +1,7 @@
 # for_interview
 README: 
 
-這是由Phaser3及js所開發的小遊戲。
+這是由Phaser3及js所開發2D橫向小遊戲。
 
 
 ###########環境依賴
