@@ -42,4 +42,44 @@ database: "資料庫名稱
 npx electron-packager . [YourAppName] --platform=win32,linux --arch=x64 --overwrite
 **[YourAppName] 是應用程式的名稱，可根據需求做替換。
 
+###########目錄結構描述
+│  app.js                 > 主應用程式入口
+│  main.js                > Electron 的主進程
+│  package-lock.json      > NPM 的鎖定版本文件
+│  package.json           > NPM 的配置文件
+│  
+├─.vscode
+│      settings.json      > VSCode 的設定文件
+│      
+├─controllers
+│      indexController.js > 控制器，處理主頁面的邏輯
+│      
+├─models
+│      loginModels.js     > 登入功能的數據模型
+│      registerModels.js  > 註冊功能的數據模型
+│      sqlModels.js       > 數據庫連接和配置
+│      
+├─public
+│  │  enemy.js            > 敵人的遊戲設定
+│  │  player.js           > 玩家的遊戲設定
+│  │  playerHead.png      > 玩家選單角色的頭像圖片
+│  │  scene.js            > 遊戲場景及遊戲邏輯
+│  │  
+│  ├─images               > 存放遊戲內的圖片
+│  │   
+│  └─music                > 存放遊戲背景音樂和效果音
+│        
+├─routers
+│      index.js           > 主路由配置
+│      
+├─views
+│  │  game.html           > 遊戲的主頁面
+│  │  login.ejs           > 登入頁面模板
+│  │  playerMenu.ejs      > 玩家菜單頁面模板
+│  └─  register.ejs       > 註冊頁面模板
+└──node_modules           > 存放所有 NPM 套件的目錄
 
+###########使用說明
+左右鍵 - 角色移動
+空白鍵 - 角色跳躍
+ctrl鍵 - 角色攻擊
