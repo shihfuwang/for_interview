@@ -29,13 +29,6 @@ app.use(session({
     name: "session_ID",
 }));
 
-const dbConfig = {
-    user: "root",
-    password: "",
-    host: "localhost",
-    database: "for_interview"
-};
-
 app.use(express.urlencoded({ extended: true }));  // 解析POST請求的資料
 
 app.use("/", routers);
