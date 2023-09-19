@@ -27,8 +27,19 @@ cd for_interview
 npm install
 
 (四)資料庫設置:
-在資料庫管理系統中，建立一個新的資料庫，使用此專案中的for_interview_create.sql檔案來建立所需的資料表及預設環境參數。
+1. 在資料庫管理系統中，建立一個新的資料庫。
+2. 使用此專案中的 `for_interview_create.sql` 檔案來建立所需的資料表及預設環境參數。
 
-(五)
-根據個人的資料庫設定，修改sqlModels.js（或您的設定檔名稱）中的相關參數。
+(五)備置環境設定:
+打開sqlModels.js根據您的資料庫設定，修改以下參數:
+user: "用戶名",
+password: "資料庫名稱",
+host: "主機名稱或IP地址",
+database: "資料庫名稱
+
+(六) 打包成應用程式:
+在終端機中執行以下命令：
+npx electron-packager . [YourAppName] --platform=win32,linux --arch=x64 --overwrite
+**[YourAppName] 是應用程式的名稱，可根據需求做替換。
+
 
