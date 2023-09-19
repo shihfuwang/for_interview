@@ -31,7 +31,7 @@ app.use(session({
 
 const dbConfig = {
     user: "root",
-    password: "skw53903718",
+    password: "",
     host: "localhost",
     database: "for_interview"
 };
