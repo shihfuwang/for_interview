@@ -118,7 +118,7 @@
                     console.log(data);
                     if (data.data && data.data.length > 0) {
                         localStorage.setItem('selectedPlayerData', JSON.stringify(data.data[0]));
-                        window.location.href = "/game";  // 轉跳到遊戲頁面
+                        window.location.href = "/game";
                     }
                 })
                 .catch(error => {
