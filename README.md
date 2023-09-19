@@ -18,6 +18,7 @@ electron: 26.2.1
 electron-packager: 17.1.2
 
 ###########部署步驟
+
 (一)克隆倉庫到本地:
 git clone https://github.com/shihfuwang/for_interview.git
 
@@ -44,6 +45,7 @@ npx electron-packager . [YourAppName] --platform=win32,linux --arch=x64 --overwr
 **[YourAppName] 是應用程式的名稱，可根據需求做替換。
 
 ###########目錄結構描述
+
 │  app.js                 > 主應用程式入口
 │  main.js                > Electron 的主進程
 │  package-lock.json      > NPM 的鎖定版本文件
@@ -81,6 +83,7 @@ npx electron-packager . [YourAppName] --platform=win32,linux --arch=x64 --overwr
 └──node_modules           > 存放所有 NPM 套件的目錄
 
 ###########使用說明
+
 左右鍵 - 角色移動
 空白鍵 - 角色跳躍
 ctrl鍵 - 角色攻擊
