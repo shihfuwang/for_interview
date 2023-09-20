@@ -6,7 +6,7 @@ let con = null;
 async function connectToMySQL() {
     con = await mysql.createConnection({
         user: "root",
-        password: "skw53903718",
+        password: "",
         host: "localhost",
         database: "for_interview"
     });
@@ -15,9 +15,11 @@ async function connectToMySQL() {
 
 async function ensureConnection() {
     if (!con) {
-        await connectToMySQL();
+        con = await connectToMySQL();
     }
+    return con; 
 }
+
 
 //查詢特定ID資料
 async function getPlayerDataByMemberID(memberID) {
