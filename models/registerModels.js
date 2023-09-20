@@ -7,7 +7,7 @@ let con = null;
 
 //註冊帳號
 async function registerUser(account, password,secPassword, birthday, gender) {
-    await sqlModels.ensureConnection();
+    const con = await sqlModels.ensureConnection();
   
     const currentDate = new Date();
     const birthDate = new Date(birthday);
