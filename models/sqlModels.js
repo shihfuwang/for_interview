@@ -94,7 +94,7 @@ async function updatePlayerDefaultData(playerName) {
     } catch (error) {
         console.error("update error:", error);
         return { success: false, message: "遊戲資料刷新失敗" };
-    }0
+    }
 }
 
 module.exports = {
