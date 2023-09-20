@@ -4,6 +4,14 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10; //是用來指定生成雜湊時的工作因子（work factor）的。它實際上表示的是對密碼進行雜湊的迭代次數。這個數字越大，生成雜湊所需的時間就越長。
 let con = null;
 
+
+async function ensureConnection() {
+    if (!con) {
+        con = await sqlModels.connectToMySQL();
+    }
+}
+
+
 //查詢資料庫
 async function selectMySQL(req, res) {
     if (!con) {
@@ -15,14 +23,11 @@ async function selectMySQL(req, res) {
 
 //比對帳號
 async function loginCompare(account, providedPassword) {
-    if (!con) {
-        con = await sqlModels.connectToMySQL();
-    }
-
+    await ensureConnection();
     let [results] = await con.execute("SELECT password FROM member_info WHERE account = ?;", [account]);
 
     if (results.length === 0) {
-        return false; //沒有符合的資料
+        return false; 
     }
 
     const storedHashedPassword = results[0].password;
@@ -34,10 +39,7 @@ async function loginCompare(account, providedPassword) {
 }
 
 async function loginUpdate(req, res) {
-    sqlModels.connectToMySQL();
-    if (!con) {
-        con = await sqlModels.connectToMySQL();
-    }
+    await ensureConnection();
 
     let [results] = await con.execute("SELECT member_ID FROM member_info WHERE account = ?;", [req.body.account]);
     if (results.length > 0) {
@@ -56,15 +58,7 @@ async function checkLogin(req, res) {
 
 //清除登入狀態
 async function clearSessionID(req, res) {
-    sqlModels.connectToMySQL();
-    if (!con) {
-        con = await connectToMySQL();
-    }
-    req.session.name = undefined;
-    let sessionID = "";
-    let ID = req.session.memberID;
-    req.session.memberID = "";
-
+    req.session.destroy();
 }
 
 
