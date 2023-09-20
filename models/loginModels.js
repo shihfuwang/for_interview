@@ -2,7 +2,6 @@ const mysql = require("mysql2/promise");
 const sqlModels =require("./sqlModels");
 const bcrypt = require('bcrypt');
 const saltRounds = 10; //是用來指定生成雜湊時的工作因子（work factor）的。它實際上表示的是對密碼進行雜湊的迭代次數。這個數字越大，生成雜湊所需的時間就越長。
-let con = null;
 
 //查詢資料庫
 async function selectMySQL(req, res) {
