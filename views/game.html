@@ -19,7 +19,6 @@
         let playerData = JSON.parse(localStorage.getItem('selectedPlayerData'));
 
         if (playerData) {
-    
             const config = {
             type: Phaser.AUTO,
             width: 800,
@@ -32,7 +31,7 @@
             physics: {
                 default: 'arcade',
                 arcade: {
-                    debug: false, //gravity具現化
+                    debug: false, 
                     gravity: {  //重力
                         y: 100,
                     }
