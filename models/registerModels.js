@@ -3,7 +3,6 @@ const loginModels = require("../models/loginModels");
 const sqlModels = require("./sqlModels");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-let con = null;
 
 //註冊帳號
 async function registerUser(account, password,secPassword, birthday, gender) {
