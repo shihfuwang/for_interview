@@ -6,15 +6,16 @@ let con = null;
 
 //查詢資料庫
 async function selectMySQL(req, res) {
-    await sqlModels.ensureConnection();
-    
+    const con = await sqlModels.ensureConnection();
+
     let [selectResults] = await con.execute("select account,password from member_info;");
     return selectResults;
 }
 
 //比對帳號
 async function loginCompare(account, providedPassword) {
-    await sqlModels.ensureConnection();
+    const con = await sqlModels.ensureConnection();
+
     let [results] = await con.execute("SELECT password FROM member_info WHERE account = ?;", [account]);
 
     if (results.length === 0) {
@@ -30,7 +31,7 @@ async function loginCompare(account, providedPassword) {
 }
 
 async function loginUpdate(req, res) {
-    await sqlModels.ensureConnection();
+   const con = await sqlModels.ensureConnection();
 
     let [results] = await con.execute("SELECT member_ID FROM member_info WHERE account = ?;", [req.body.account]);
     if (results.length > 0) {
