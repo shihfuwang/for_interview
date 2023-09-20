@@ -5,16 +5,28 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 let con = null;
 
-//註冊帳號
-async function registerUser(account, password,secPassword, birthday, gender) {
+async function ensureConnection() {
     if (!con) {
         con = await sqlModels.connectToMySQL();
     }
+}
+
+//註冊帳號
+async function registerUser(account, password,secPassword, birthday, gender) {
+    await ensureConnection();
   
-    // 僅查詢該特定帳號，以檢查它是否已存在
+    const currentDate = new Date();
+    const birthDate = new Date(birthday);
+    if (birthDate > currentDate) {
+        return { success: false, message: "生日日期有誤" };
+    }
+
     let [selectResults] = await con.execute("SELECT account FROM member_info WHERE account = ?;", [account]);
     if (selectResults.length > 0) {
         return { success: false, message: "帳號已有人使用" };
+    }
+    if (password !== secPassword) {
+        return { success: false, message: "輸入的密碼不符合" };
     }
 
     let genderID = "";
@@ -25,9 +37,6 @@ async function registerUser(account, password,secPassword, birthday, gender) {
         genderID = 1;
     }
 
-    if (password !== secPassword) {
-        return { success: false, message: "輸入的密碼不符合" };
-    }
     try {
         const hashedPassword = await bcrypt.hash(password, saltRounds);
         let [Results] = await con.execute("INSERT INTO member_info (account,password,birthday,gender) VALUES (?, ?, ?, ?);", [account, hashedPassword, birthday, genderID]);
