@@ -5,15 +5,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 let con = null;
 
-async function ensureConnection() {
-    if (!con) {
-        con = await sqlModels.connectToMySQL();
-    }
-}
-
 //註冊帳號
 async function registerUser(account, password,secPassword, birthday, gender) {
-    await ensureConnection();
+    await sqlModels.ensureConnection();
   
     const currentDate = new Date();
     const birthDate = new Date(birthday);
