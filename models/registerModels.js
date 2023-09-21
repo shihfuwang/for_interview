@@ -10,13 +10,6 @@ async function registerUser(account, password,secPassword, birthday, gender) {
 
     const currentDate = new Date();
     const birthDate = new Date(birthday);
-    
-    if (birthDate > currentDate) {
-        return { success: false, message: "生日日期有誤" };
-    }
-    
-    const currentDate = new Date();
-    const birthDate = new Date(birthday);
     if (birthDate > currentDate) {
         return { success: false, message: "生日日期有誤" };
     }
